@@ -39,9 +39,9 @@ sweeperd/
 ├── pkg/
 │   └── constants/          # Default paths and global constants
 ├── docs/
-│   ├── CONFIG_SPEC_MVP.md
-│   ├── RULE_SPEC_MVP.md
-│   └── SWEEPERD_INTERFACE_SPEC_MVP.md
+│   ├── config-spec.md
+│   ├── rule-spec.md
+│   └── interface-spec.md
 └── go.mod
 ```
 
@@ -49,12 +49,12 @@ sweeperd/
 
 ## Configuration
 
-The configuration lives in `~/.autoorg/config.yaml` by default.
+The configuration lives in `~/.sweeperd/config.yaml` by default.
 
 ```yaml
-rules_path: "~/.autoorg/rules.d"
-log_path: "~/.autoorg/logs"
-trash_path: "~/.autoorg/.trash"
+rules_path: "~/.sweeperd/rules.d"
+log_path: "~/.sweeperd/logs"
+trash_path: "~/.sweeperd/.trash"
 watch_enabled: true
 debounce_ms: 1000
 parallelism: 4
@@ -65,7 +65,7 @@ dry_run_global: false
 
 ## Example Rule
 
-Each rule is standalone and lives under `~/.autoorg/rules.d/*.yaml`.
+Each rule is standalone and lives under `~/.sweeperd/rules.d/*.yaml`.
 
 ```yaml
 name: "Move PDFs to Documents"
@@ -101,9 +101,9 @@ sweeperd watch --foreground
 
 All internal specifications are documented in the `/docs` folder:
 
-- [Rule Specification](docs/RULE_SPEC_MVP.md)
-- [Configuration Specification](docs/CONFIG_SPEC_MVP.md)
-- [Interface Specification](docs/SWEEPERD_INTERFACE_SPEC_MVP.md)
+- [Rule Specification](docs/config-spec.md)
+- [Configuration Specification](docs/rule-spec.md)
+- [Interface Specification](docs/interface-spec.md)
 
 ---
 
