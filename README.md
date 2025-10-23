@@ -119,10 +119,8 @@ All internal specifications are documented in the `/docs` folder:
 
 ---
 
-## 📜 License
+## License
 
 MIT © 2025 — Karthik Sudhakar Kashyap
-
----
 
 
