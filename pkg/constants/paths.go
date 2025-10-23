@@ -1,10 +1,11 @@
 package constants
 
 const (
-	DefaultConfigFile = "~/.sweeperd/config.yaml"
-	DefaultRulesDir   = "~/.sweeperd/rules.yaml"
-	DefaultLogsDir    = "~/.sweeperd/logs"
-	DefaultTrashDir   = "~/.sweeperd/.trash"
+	DefaultConfigFile    = "/Users/karthik/.sweeperd/config.yaml"
+	DefaultRulesDir      = "/Users/karthik/.sweeperd/rules.yaml"
+	DefaultLogsDir       = "~/.sweeperd/logs"
+	DefaultTrashDir      = "~/.sweeperd/.trash"
+	DefaultDaemonPIDFile = "~/.sweeperd/.daemon_pid"
 )
 
 const (

@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/karthikkashyap98/sweeperd/internal/cli"
+)
 
 func main() {
-	fmt.Println("Starting Sweeperd")
+	cli.Execute()
 }
