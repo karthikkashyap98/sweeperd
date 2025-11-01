@@ -1,9 +1,11 @@
 package cli
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/karthikkashyap98/sweeperd/internal/config"
+	"github.com/karthikkashyap98/sweeperd/internal/executor/actions"
 	"github.com/karthikkashyap98/sweeperd/internal/rules"
 	"github.com/spf13/cobra"
 )
@@ -29,13 +31,30 @@ func newRunCmd() *cobra.Command {
 
 func preRunHandler(cmd *cobra.Command, args []string) error {
 	cfg := config.LoadConfig(cfgPath)
-	rules := rules.LoadRules(rulesPath)
+	rule := rules.LoadRules(rulesPath)
 
 	fmt.Println(cfg)
-	fmt.Println(rules)
+	fmt.Println(rule)
 	return nil
 }
 
 func runHandler(cmd *cobra.Command, args []string) error {
+
 	return nil
+}
+
+func BuildAndRun(ctx context.Context, r rules.Rule) error {
+	matcher := BuildMatcherFromRule(r)
+
+	act, err := actions.NewAction(r.Action, r.Match.Folder, r.Action.Target, matcher)
+	if err != nil {
+		return err
+	}
+
+	files, err := act.Plan(ctx)
+	if err != nil {
+		return err
+	}
+
+	return act.Execute(ctx, files)
 }

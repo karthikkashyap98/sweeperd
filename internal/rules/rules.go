@@ -12,8 +12,8 @@ type Rule struct {
 	Name    string  `yaml:"rule"`
 	Enabled bool    `yaml:"enabled"`
 	Match   Match   `yaml:"match"`
-	action  Action  `yaml:"action"`
-	options Options `yaml:"options"`
+	Action  Action  `yaml:"action"`
+	Options Options `yaml:"options"`
 }
 
 type Match struct {
