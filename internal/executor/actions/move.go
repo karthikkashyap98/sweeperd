@@ -3,6 +3,7 @@ package actions
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -40,6 +41,7 @@ func (mv *MoveInstruction) Plan(ctx context.Context) ([]string, error) {
 		out = append(out, path)
 		return nil
 	})
+
 	return out, err
 }
 
@@ -63,6 +65,7 @@ func (mv *MoveInstruction) Execute(ctx context.Context, files []string) error {
 			return err
 		}
 	}
+	fmt.Println("Moved ", len(files), " file(s)")
 	return nil
 }
 

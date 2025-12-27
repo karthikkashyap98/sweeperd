@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"github.com/goccy/go-yaml"
 	"github.com/karthikkashyap98/sweeperd/internal/utils"
 	"os"
@@ -20,7 +19,6 @@ func LoadConfig(configFilePath string) *Config {
 	var cfg Config
 
 	data, err := os.ReadFile(configFilePath)
-	fmt.Println(configFilePath)
 	if err != nil {
 		utils.PrintError(err)
 		os.Exit(1)

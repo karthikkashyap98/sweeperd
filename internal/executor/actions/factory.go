@@ -7,31 +7,31 @@ import (
 	"github.com/karthikkashyap98/sweeperd/internal/utils"
 )
 
-type Constructor func(spec rules.Action, src, dst string, m Matcher) (Action, error)
+type RuleFunction func(spec rules.Rule, m Matcher) (Action, error)
 
-var registry = map[rules.ActionType]Constructor{
+var registry = map[rules.ActionType]RuleFunction{
 	rules.Move: newMove,
 }
 
-func Register(kind rules.ActionType, c Constructor) {
+func Register(kind rules.ActionType, c RuleFunction) {
 	registry[kind] = c
 }
 
-func NewAction(spec rules.Action, source, destination string, m Matcher) (Action, error) {
-	ctor, ok := registry[spec.Type]
+func NewAction(spec rules.Rule, m Matcher) (Action, error) {
+	ctor, ok := registry[spec.Action.Type]
 	if !ok {
-		return nil, fmt.Errorf("unknown action type: %s", spec.Type)
+		return nil, fmt.Errorf("unknown action type: %s", spec.Action.Type)
 	}
-	return ctor(spec, source, destination, m)
+	return ctor(spec, m)
 }
 
-func newMove(spec rules.Action, src, dst string, m Matcher) (Action, error) {
-	if dst == "" {
-		dst = spec.Target
-	}
+func newMove(spec rules.Rule, m Matcher) (Action, error) {
+	dst := utils.ExpandHome(spec.Action.Target)
+	src := utils.ExpandHome(spec.Match.Folder)
+
 	return &MoveInstruction{
-		Source:      utils.ExpandHome(src),
-		Destination: utils.ExpandHome(dst),
+		Source:      src,
+		Destination: dst,
 		Matcher:     m,
 	}, nil
 }

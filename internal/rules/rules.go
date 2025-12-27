@@ -18,7 +18,7 @@ type Rule struct {
 
 type Match struct {
 	Folder        string   `yaml:"folder"`
-	extensions    []string `yaml:"extensions"`
+	Extensions    []string `yaml:"extensions"`
 	OlderThanDays int      `yaml:"older_than_days"`
 }
 
